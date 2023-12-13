@@ -1,0 +1,108 @@
+<% for(let habit of habits) {%>   
+    <div class="container daily-view" style="display: none;">
+        <!-- habit title -->
+        <div class="habit-title"> <h2><%= habit.title %></h2> </div>
+
+        <!-- habit details in daily view-->
+        <div class="habit-container">
+            <!-- complete status -->
+
+            <div class="mark-status-daily">
+                <% 
+                    let months = ["","Jan", "Feb", "March", "Apr", "May", "June", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"];
+                    let startDate = habit.dates[0].date;
+                    let start = months[startDate.trim(" ")[0]] +" " +startDate.substring(2);
+                %>
+                <%=start%>
+            </div>
+
+            <!-- habit desciption -->
+            <div class="habit-desc">
+                <% if(!habit.desc) { %>
+                    <p>- No description -</p>
+                <% } else { %>
+                    <p><%= habit.desc %></p> 
+                <% } %>
+            </div>
+
+            <!-- options : edit, delete -->
+            <style>
+                .menu {
+                    display: flex;
+                    align-items: center;
+                }
+            
+                .menu button {
+                    width: 30px; /* Adjust the width as needed */
+                    margin-right: 5px; /* Adjust the margin as needed */
+                }
+            </style>
+            
+            <div class="menu">
+                <a class="clickIt" id="<%= habit._id %>" style="text-decoration: none;">
+                    <i class="fa-solid fa-pencil fa-lg" style="color: rgb(241, 121, 109);"></i>
+                </a>
+            
+                <!-- edit form -->
+                <div class="form-popup" id="myEditForm_<%= habit._id %>">
+                    <form action="users/habit/edit-habit/?id=<%= habit._id%>&user=<%= locals.user %>" id="editHabit" method="POST" class="form-container">
+                        <input type="text" name="title" value="<%= habit.title %>" required>
+                        <input type="text" name="desc" value="<%= habit.desc %>">
+                        <button class="closeIt" type="reset" id="cancel-btn">Cancel</button>
+                        <button type="submit" id="save-btn">Save</button>
+                    </form>
+                </div>
+            
+                <a href="#" onclick="confirmDelete('<%= habit._id %>')" style="text-decoration: none;">
+                    <i class="fa-regular fa-trash-can fa-lg" style="color: rgb(241, 121, 109);"></i>
+                </a>
+            
+                <button onclick="toggleHeart('<%= habit._id %>')" id="heartButton_<%= habit._id %>" class="heartButton">
+                    <span><i class="fa-solid fa-heart"></i></span>
+                </button>
+            </div>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function () {
+                    // Set initial heart state based on local storage
+                    var habitId = '<%= habit._id %>';
+                    var heartButton = document.getElementById("heartButton_" + habitId);
+                    var heartIcon = heartButton.querySelector("i.fa-heart");
+            
+                    var isFavorited = localStorage.getItem('favorited_' + habitId);
+            
+                    if (isFavorited && isFavorited === 'true') {
+                        heartIcon.style.color = "rgb(241, 121, 109)";
+                    }
+                });
+            
+                function confirmDelete(habitId) {
+                    var confirmation = confirm("Are You Sure You Want To Delete The Todo?");
+                    if (confirmation) {
+                        window.location.href = "/users/habit/delete-habit/?id=" + habitId;
+                    }
+                }
+            
+                function toggleHeart(habitId) {
+                    var heartButton = document.getElementById("heartButton_" + habitId);
+                    var heartIcon = heartButton.querySelector("i.fa-heart");
+            
+                    // Toggle the color class
+                    if (heartIcon.style.color === "rgb(241, 121, 109)") {
+                        heartIcon.style.color = "";
+                        alert("Todo is now removed from favorites!");
+                        // Update local storage
+                        localStorage.setItem('favorited_' + habitId, 'false');
+                    } else {
+                        heartIcon.style.color = "rgb(241, 121, 109)";
+                        alert("Todo is now added to favorites!");
+                        // Update local storage
+                        localStorage.setItem('favorited_' + habitId, 'true');
+                    }
+                }
+            </script>
+            
+            
+        </div>
+    </div>
+<% } %>
