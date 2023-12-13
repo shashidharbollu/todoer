@@ -30,6 +30,7 @@
                 .menu {
                     display: flex;
                     align-items: center;
+                   
                 }
             
                 .menu button {
@@ -46,8 +47,8 @@
                 <!-- edit form -->
                 <div class="form-popup" id="myEditForm_<%= habit._id %>">
                     <form action="users/habit/edit-habit/?id=<%= habit._id%>&user=<%= locals.user %>" id="editHabit" method="POST" class="form-container">
-                        <input type="text" name="title" value="<%= habit.title %>" required>
-                        <input type="text" name="desc" value="<%= habit.desc %>">
+                        <input type="text" name="title" value="<%= habit.title %>" maxlength="10" required>
+                        <input type="text" name="desc" value="<%= habit.desc %>" maxlength="25">
                         <button class="closeIt" type="reset" id="cancel-btn">Cancel</button>
                         <button type="submit" id="save-btn">Save</button>
                     </form>

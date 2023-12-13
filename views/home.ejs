@@ -23,11 +23,14 @@
         <button id="open-btn-fixed" onclick="openForm()" > + Add Todo</button>
         <div class="form-popup" id="myForm">
             <form action="/users/habit/create-habit" id="createHabit" method="POST" class="form-container">
-                <input type="text" name="title" placeholder="Enter  Todo title" required>
-                <input type="text" name="desc" placeholder="Describe Your Todo">
+                <input type="text" name="title" placeholder="Enter Todo title" maxlength="10" required>
+                <textarea name="desc" placeholder="Describe Your Todo" maxlength="25" ></textarea>
+                <!-- Note: rows attribute sets the visible number of lines in the textarea -->
                 <button type="reset" id="cancel-btn" onclick="closeForm()">Cancel</button>
                 <button type="submit" id="save-btn">Save</button>
             </form>
+        </div>
+        
         </div>
     <% }
     
@@ -62,8 +65,8 @@
 
             <div class="form-popup" id="myForm">
                 <form action="/users/habit/create-habit" id="createHabit" method="POST" class="form-container">
-                    <input type="text" name="title" placeholder="Enter Todo" required>
-                    <input type="text" name="desc" placeholder="Describr Your Todo">
+                    <input type="text" name="title" placeholder="Enter Todo" maxlength="10" required>
+                    <input type="text" name="desc" placeholder="Describr Your Todo" maxlength="25">
                     <button type="reset" id="cancel-btn" onclick="closeForm()">Cancel</button>
                     <button type="submit" id="save-btn">Save</button>
                 </form>

@@ -85,6 +85,24 @@ body {
   padding-bottom: 20px;
   background-color: rgba(16, 133, 151, 0.7);
 }
+
+.form-container textarea {
+  width: 90%;
+  padding: 12px;
+  margin: 15px 0 22px 0;
+  border: none;
+  background: #f1f1f1;
+  font-size: 15px;
+  resize: vertical; /* Allow vertical resizing */
+  min-height: 50px; /* Set a minimum height to prevent it from collapsing completely */
+}
+
+/* Additional styling for the textarea */
+.form-container textarea:focus {
+  background-color: #fff;
+  outline: none;
+}
+
 .form-container input {
   width: 90%;
   padding: 12px;
