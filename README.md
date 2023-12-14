@@ -42,9 +42,11 @@ Once you have the application up and running, you can start using it by followin
 - Click on the "Add Todo" button to create a new Todo.
 - Enter the name of the habit you want to track.
 - Click on the "Save" button to save the Todo.
+- Click on the "heart" button to Add the Todo.
 - To mark a Todo as complete/incomplete for the day, simply click on the corresponding icon.
 - To delete a Todo, click on the "Delete" icon next to it.
-- To see today's Todos, click on "Show Daily" button.
+- To Edit a Todo, click on the "Edit" icon next to it.
+- To see today's Todos, click on "Edit/delete" button.
 - To edit a Todo, click on the "Edit" icon next to it.
 
 ## Folder Structure
